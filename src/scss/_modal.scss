@@ -1,0 +1,159 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+
+    &.active {
+        display: block;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        @include transition(opacity .4s linear);
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+
+    &__dialog {
+        width: 968px;
+        @include box-sizing(border-box);
+        max-height: calc(100% - 150px);
+        min-height: 215px;
+        margin: 0 auto;
+        padding: 40px 30px 50px;
+        position: relative;
+        top: 50%;
+        z-index: 9999;
+        overflow-y: auto;
+        background: $backgroundColor;
+        @include transform(perspective(400px) rotate3d(0, 1, 0, -360deg) translateY(-50%));
+        @include transition(all .3s);
+
+        @include breakpoint(laptop) {
+            width: 850px;
+            padding: 40px 30px 60px;
+        }
+
+        @include breakpoint(tablet) {
+            width: 600px;
+        }
+
+        @include breakpoint(mobile) {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        &.visible {
+            @include transform(perspective(400px) scale3d(.95, .95, .95) translateY(-50%));
+        }
+    }
+
+    &__container {
+        width: 768px;
+
+        @include breakpoint(laptop) {
+            width: 694px;
+        }
+
+        @include breakpoint(tablet) {
+            width: 520px;
+        }
+
+        @include breakpoint(mobile) {
+            width: 100%;
+        }
+    }
+
+    &__close {
+        position: absolute;
+        right: 38px;
+        top: 38px;
+
+        @include breakpoint(tablet) {
+            right: 25px;
+            top: 25px;
+        }
+
+        @include breakpoint(mobile) {
+            right: 20px;
+            top: 20px;
+        }
+    }
+
+    &__title {
+        padding: 20px 0;
+        letter-spacing: 1px;
+        line-height: 120%;
+
+        @include breakpoint(laptop) {
+            padding: 18px 0;
+        }
+
+        @include breakpoint(tablet) {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 18px 0;
+            text-align: center;
+        }
+
+        @include breakpoint(mobile) {
+            max-width: 250px;
+            margin: 0 auto;
+            padding: 15px 0;
+            text-align: center;
+        }
+    }
+
+    &__text {
+        padding: 8px 0;
+        letter-spacing: .4px;
+
+        @include breakpoint(laptop) {
+            padding: 7px 0;
+        }
+
+        @include breakpoint(tablet) {
+            padding: 7px 0;
+            text-align: center;
+        }
+
+        @include breakpoint(mobile) {
+            padding: 6px 0;
+            text-align: center;
+        }
+
+        &--bold {
+            font-weight: $bold;
+        }
+    }
+
+    &__button {
+        margin-top: 25px;
+
+        @include breakpoint(tablet) {
+            margin: 25px auto 0;
+            display: table;
+        }
+
+        @include breakpoint(mobile) {
+            margin: 25px auto 0;
+            display: table;
+        }
+    }
+}

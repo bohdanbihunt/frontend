@@ -1,0 +1,7 @@
+.btn-primary {
+    @include btn($buttonColor, $secondaryTextColor, $buttonOutlineColor);
+}
+
+.btn-danger {
+    @include btn($buttonDangerColor, $secondaryTextColor, $buttonDangerOutlineColor);
+}

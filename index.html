@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Bohdan Bihun - Recruitment task</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+        <link href="dist/main.css" rel="stylesheet" media="all"/>
+    </head>
+    
+    <body>
+        <div class="section">
+            <div class="container">
+                <div class="section__content">
+                    <div class="section__left">
+                        <picture class="section__left-picture">
+                            <source srcset="images/sean-o-KMn4VEeEPR8-unsplash_1_s6zmfh_c_scale_w_784.webp" type="image/webp">
+                            <img src="images/sean-o-KMn4VEeEPR8-unsplash_1_s6zmfh_c_scale,w_784.jpg" alt="Lorem Ipsum" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    
+                    <div class="section__right">
+                        <h1 class="title section__right-title">Lorem Ipsum</h1>
+                        
+                        <p class="text section__right-text">
+                            Infinitely scalable, feature-rich and cloud-native data 
+                            management and protection for modern and legacy 
+                            infrastructures and SaaS platforms, managed via a single 
+                            app with no hardware required.
+                        </p>
+                        
+                        <button class="btn-primary" onclick="openModal()" title="Open modal">Button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal">
+            <div class="modal__overlay"></div>
+            
+            <div class="modal__dialog">
+                <div id="modal-close" class="close modal__close"></div>
+
+                <div class="container modal__container">
+                    <h3 class="title modal__title">Alert!</h3>
+                    <p class="text modal__text">You have clicked <span id="modal-counter" class="modal__text--bold">1</span> times to related button.</p>
+                    
+                    <div id="button-wrap"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="dist/all.js"></script>
+    </body>

@@ -1,0 +1,155 @@
+@mixin clearfix() {
+    &::after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+}
+
+$desktop-min: 1400.01px;
+$laptop-max: 1400px;
+$laptop-min: 1020.01px;
+$tablet-max: 1020px;
+$tablet-min: 768.01px;
+$mobile-max: 768px;
+
+@mixin breakpoint($breakpoints...) {
+    @each $breakpoint in $breakpoints {
+        @if $breakpoint == mobile {
+            @media screen and (max-width: $mobile-max) {
+                @content;
+            }
+        }
+        @else if $breakpoint == tablet {
+            @media screen and (min-width: $tablet-min) and (max-width: $tablet-max) {
+                @content;
+            }
+        }
+        @else if $breakpoint == laptop {
+            @media screen and (min-width: $laptop-min) and (max-width: $laptop-max) {
+                @content;
+            }
+        }
+        @else if $breakpoint == desktop {
+            @media screen and (min-width: $desktop-min) {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin box-shadow($top, $left, $blur, $spread, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow:inset $top $left $blur $spread $color;
+        -moz-box-shadow:inset $top $left $blur $spread $color;
+        box-shadow:inset $top $left $blur $spread $color;
+    }
+    @else {
+        -webkit-box-shadow: $top $left $blur $spread $color;
+        -moz-box-shadow: $top $left $blur $spread $color;
+        box-shadow: $top $left $blur $spread $color;
+    }
+}
+
+@mixin border-radius($radius: 50%) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin transform($transforms) {
+    -webkit-transform: $transforms;
+    -moz-transform: $transforms;
+    -ms-transform: $transforms;
+    transform: $transforms;
+}
+
+@mixin transform-origin ($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+
+@mixin box-sizing($box-model) {
+    -webkit-box-sizing: $box-model;
+    -moz-box-sizing: $box-model;
+    box-sizing: $box-model;
+}
+
+@mixin btn($backgroundColor, $textColor, $outlineColor) {
+    display: table-cell;
+    width: fit-content;
+    padding: 13px 36px;
+    @include box-sizing(border-box);
+    border: 2px solid $backgroundColor;
+    @include border-radius(100px);
+    position: relative;
+    background-color: $backgroundColor;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: $bold;
+    font-size: 1.143em;
+    color: $textColor;
+    cursor: pointer;
+    outline: none;
+    @include transition(all .3s);
+
+    @include breakpoint(laptop) {
+        padding: 14px 35px;
+        font-size: 1.07em;
+    }
+
+    @include breakpoint(tablet) {
+        padding: 13px 35px;
+        font-size: 1.07em;
+    }
+
+    @include breakpoint(mobile) {
+        padding: 14px 30px;
+        font-size: 1.05em;
+    }
+
+    &:hover {
+        @include breakpoint(desktop, laptop) {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            @include transform(translateY(-3px));
+
+            &:after {
+                opacity: 0;
+                @include transform(scaleX(1.4) scaleY(1.6));
+            }
+        }
+    }
+    
+    &:active {
+        @include transform(translateY(-1px));
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &:focus {
+        border: 2px solid $outlineColor;
+    }
+
+    &:after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: .5;
+        background-color: $backgroundColor;
+        @include border-radius(100px);
+        @include transition(all .5s);
+    }
+}

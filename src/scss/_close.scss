@@ -1,0 +1,31 @@
+.close {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 1;
+    @include transition(opacity .3s);
+
+    &:hover {
+        @include breakpoint(desktop, laptop) {
+            opacity: .5;
+        }
+    }
+
+    &:before, &:after {
+        content: '';
+        height: 20px;
+        width: 2px;
+        position: absolute;
+        top: 5px;
+        left: 14px;
+        background-color: $closeIconColor;
+    }
+
+    &:before {
+        @include transform(rotate(45deg));
+    }
+
+    &:after {
+        @include transform(rotate(-45deg));
+    }
+}
